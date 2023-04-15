@@ -1,7 +1,15 @@
 from django.shortcuts import render
-from django.views.generic import ListView
-from django.views.generic import DetailView
+from django.views.generic import ListView, DetailView,CreateView
+
+from note.forms import NoteForm
+
 from .models import Note
+
+class NotesCreateView(CreateView):
+    model=Note
+    form_class=NoteForm
+    success_url="/smart/notes"
+
 
 class NotesListView(ListView):
     model=Note
