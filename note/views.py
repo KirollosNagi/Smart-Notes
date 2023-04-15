@@ -1,9 +1,21 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView,CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic.edit import DeleteView
+
 
 from note.forms import NoteForm
 
 from .models import Note
+
+class NotesDeleteView(DeleteView):
+    model=Note
+    success_url="/smart/notes"
+    template_name = "note/note_delete.html"
+
+class NotesUpdateView(UpdateView):
+    model=Note
+    form_class=NoteForm
+    success_url="/smart/notes"
 
 class NotesCreateView(CreateView):
     model=Note
